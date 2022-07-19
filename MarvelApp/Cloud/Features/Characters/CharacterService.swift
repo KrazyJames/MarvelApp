@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class CharacterService {
+final class CharacterService: ObservableObject {
     func getAll(queryItems: QueryItems = .init()) async throws -> [Character] {
         let router = CharacterRouter.getAll(queryItems: queryItems)
         return try await Self.fetch(router: router).data.results

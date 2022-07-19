@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class ComicService {
+final class ComicService: ObservableObject {
     func getAll(queryItems: QueryItems = .init()) async throws -> [Comic] {
         let router = ComicRouter.getAll(queryItems: queryItems)
         return try await Self.fetch(router: router).data.results

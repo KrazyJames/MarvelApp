@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class CreatorService {
+final class CreatorService: ObservableObject {
     func getAll(queryItems: QueryItems = .init()) async throws -> [Creator] {
         let router = CreatorRouter.getAll(queryItems: queryItems)
         return try await Self.fetch(router: router).data.results
