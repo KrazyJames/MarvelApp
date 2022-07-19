@@ -13,7 +13,7 @@ final class CharacterDetailViewModel<Element>: ObservableObject where Element: V
     @Published
     var comics: [ComicViewModel] = []
     let character: Element
-    let service: CharacterService
+    weak var service: CharacterService?
 
     private var isLoading = false
     private var shouldLoad: Bool {
@@ -36,7 +36,12 @@ final class CharacterDetailViewModel<Element>: ObservableObject where Element: V
         if shouldLoad {
             isLoading.toggle()
             do {
-                let result = try await service.getComics(for: character.id)
+                guard let result = try await service?.getComics(
+                    for: character.id
+                ) else {
+                    isLoading.toggle()
+                    throw NetworkError.noData
+                }
                 isLoading.toggle()
                 comics = result.map(ComicViewModel.init)
             } catch let error as NetworkError {

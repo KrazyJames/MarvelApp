@@ -15,4 +15,6 @@ final class TabBarViewModel: ObservableObject {
     var comicListViewModel = ComicListViewModel(service: .init())
     @Published
     var selectedTab = TabBarView.Tab.comics
+    @Published
+    var creatorService = CreatorService()
 }

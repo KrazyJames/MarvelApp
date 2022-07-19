@@ -12,7 +12,8 @@ final class CreatorDetailViewModel<Element>: ObservableObject where Element: Vie
     @Published
     var comics: [ComicViewModel] = []
     let creator: Element
-    let service: CreatorService
+
+    weak var service: CreatorService?
 
     private var isLoading = false
     private var shouldLoad: Bool {
@@ -32,9 +33,12 @@ final class CreatorDetailViewModel<Element>: ObservableObject where Element: Vie
         if shouldLoad {
             isLoading.toggle()
             do {
-                let result = try await service.getComics(
+                guard let result = try await service?.getComics(
                     for: creator.id
-                )
+                ) else {
+                    isLoading.toggle()
+                    throw NetworkError.noData
+                }
                 isLoading.toggle()
                 comics = result.map(ComicViewModel.init)
             } catch let error as NetworkError {

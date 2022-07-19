@@ -15,7 +15,7 @@ final class ComicDetailViewModel<Element>: ObservableObject where Element: ViewM
     var creators: [CreatorViewModel] = []
 
     let comic: Element
-    let service: ComicService
+    weak var service: ComicService?
 
     private var isLoading = false
     private var shouldLoad: Bool {
@@ -39,7 +39,11 @@ final class ComicDetailViewModel<Element>: ObservableObject where Element: ViewM
 
     private func loadCharacters() async {
         do {
-            let result = try await service.getCharacters(for: comic.id)
+            guard let result = try await service?.getCharacters(
+                for: comic.id
+            ) else {
+                throw NetworkError.noData
+            }
             characters = result.map(CharacterViewModel.init)
         } catch let error as NetworkError {
             debugPrint(error.localizedDescription)
@@ -50,7 +54,11 @@ final class ComicDetailViewModel<Element>: ObservableObject where Element: ViewM
 
     private func loadCreators() async {
         do {
-            let result = try await service.getCreators(for: comic.id)
+            guard let result = try await service?.getCreators(
+                for: comic.id
+            ) else {
+                throw NetworkError.noData
+            }
             creators = result.map(CreatorViewModel.init)
         } catch let error as NetworkError {
             debugPrint(error.localizedDescription)
