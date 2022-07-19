@@ -9,21 +9,27 @@ import Foundation
 
 @MainActor
 final class CharacterListViewModel: ObservableObject, ListViewModel {
-    @Published var list: [CharacterViewModel] = []
-    @Published var term = ""
+    @Published
+    var list: [CharacterViewModel] = []
+    @Published
+    var term = ""
+    @Published
+    private var isLoading = false
 
-    let service = CharacterService()
+    let service: CharacterService
 
-    @Published private var isLoading = false
     private var shouldLoad: Bool {
         !isLoading && list.isEmpty
     }
     var isLoadingMore: Bool {
         isLoading && !list.isEmpty
     }
-
     var shouldShowLoading: Bool {
         list.isEmpty && isLoading
+    }
+
+    init(service: CharacterService) {
+        self.service = service
     }
 
     @Sendable
@@ -40,10 +46,14 @@ final class CharacterListViewModel: ObservableObject, ListViewModel {
     func search() async {
         if !isLoading {
             isLoading.toggle()
-            let result = await service.search(for: term)
-            isLoading.toggle()
-            if case .success(let characters) = result {
-                list = characters.map(CharacterViewModel.init)
+            do {
+                let result = try await service.search(for: term)
+                list = result.map(CharacterViewModel.init)
+                isLoading.toggle()
+            } catch let error as NetworkError {
+                debugPrint(error.localizedDescription)
+            } catch {
+                debugPrint(error.localizedDescription)
             }
         }
     }
@@ -61,15 +71,19 @@ final class CharacterListViewModel: ObservableObject, ListViewModel {
     ) async {
         if !isLoading {
             isLoading.toggle()
-            let result = await service.getAll(queryItems: queryItems)
-            isLoading.toggle()
-            if case let .success(comics) = result {
-                let new = comics.map(CharacterViewModel.init)
+            do {
+                let result = try await service.getAll(queryItems: queryItems)
+                isLoading.toggle()
+                let new = result.map(CharacterViewModel.init)
                 if isRefresh {
                     list = new
                 } else {
                     list.append(contentsOf: new)
                 }
+            } catch let error as NetworkError {
+                debugPrint(error.localizedDescription)
+            } catch {
+                debugPrint(error.localizedDescription)
             }
         }
     }

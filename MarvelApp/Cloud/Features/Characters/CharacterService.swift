@@ -7,17 +7,14 @@
 
 import Foundation
 
-typealias CharacterDataWrapperResult = Result<CharacterDataWrapper, NetworkError>
-typealias CharactersResult = Result<[Character], NetworkError>
-
 final class CharacterService {
-    func getAll(queryItems: QueryItems = .init()) async -> CharactersResult {
+    func getAll(queryItems: QueryItems = .init()) async throws -> [Character] {
         let router = CharacterRouter.getAll(queryItems: queryItems)
-        return await Self.fetch(router: router).map(\.data.results)
+        return try await Self.fetch(router: router).data.results
     }
 
-    func search(for term: String, queryItems: QueryItems = .init()) async -> CharactersResult {
-        await getAll(
+    func search(for term: String, queryItems: QueryItems = .init()) async throws -> [Character] {
+        try await getAll(
             queryItems: queryItems.merging(
                 [.nameStartsWith: term],
                 uniquingKeysWith: { $1 }
@@ -25,12 +22,12 @@ final class CharacterService {
         )
     }
 
-    func getComics(for characterId: Int, queryItems: QueryItems = .init()) async -> ComicsResult {
+    func getComics(for characterId: Int, queryItems: QueryItems = .init()) async throws -> [Comic] {
         let router = CharacterRouter.getComics(id: characterId, queryItems: queryItems)
-        return await ComicService.fetch(router: router).map(\.data.results)
+        return try await ComicService.fetch(router: router).data.results
     }
 
-    static func fetch(router: URLRequestRouter) async -> CharacterDataWrapperResult {
-        await API.load(router: router)
+    static func fetch(router: URLRequestRouter) async throws -> CharacterDataWrapper {
+        try await API.load(router: router)
     }
 }

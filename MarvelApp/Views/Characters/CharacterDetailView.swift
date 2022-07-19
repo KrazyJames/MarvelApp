@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct CharacterDetailView: View {
-    @ObservedObject var viewModel: CharacterDetailViewModel<CharacterViewModel>
+    @ObservedObject
+    var viewModel: CharacterDetailViewModel<CharacterViewModel>
 
     var body: some View {
         List {
@@ -32,8 +33,7 @@ struct CharacterDetailView: View {
                 }
                 Text(viewModel.character.description)
             }
-            .listRowBackground(Color.clear)
-            .listRowInsets(.init())
+            .clearListRow()
 
             Section("Comics") {
                 ItemsCollectionView(
@@ -47,8 +47,7 @@ struct CharacterDetailView: View {
                     )
                 }
             }
-            .listRowBackground(Color.clear)
-            .listRowInsets(.init())
+            .clearListRow()
         }
         .task(viewModel.load)
         .navigationTitle(viewModel.character.name)

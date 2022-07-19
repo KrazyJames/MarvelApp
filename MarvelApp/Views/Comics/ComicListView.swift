@@ -28,7 +28,7 @@ struct ComicListView: View {
 struct ComicListView_Previews: PreviewProvider {
     static var previews: some View {
         ComicListView(
-            viewModel: .init()
+            viewModel: .init(service: .init())
         )
     }
 }

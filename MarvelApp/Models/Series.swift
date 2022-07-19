@@ -45,7 +45,7 @@ struct SeriesList: Decodable, DataList {
 }
 
 extension SeriesList {
-    static let demo: Self = .init(available: .zero, returned: .zero, items: [])
+    static let demo: Self = .init(available: .zero, returned: .zero, items: [.demo])
 }
 
 struct SeriesSummary: Decodable, DataSummary {

@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct NavigationImageView<Content, Destination>: View where Content: ViewModel, Destination: View {
+struct NavigationImageView<Content, Destination>: View
+where Content: ViewModel, Destination: View {
     let viewModel: Content
     let destination: (Content) -> Destination
 
@@ -16,22 +17,36 @@ struct NavigationImageView<Content, Destination>: View where Content: ViewModel,
             destination(viewModel)
         } label: {
             VStack {
-                CachedAsyncImageView(url: viewModel.image)
-                    .tint(.red)
-                    .frame(
-                        width: 96,
-                        height: 144
-                    )
-                    .clipShape(
-                        RoundedRectangle(
-                            cornerRadius: 8
-                        )
-                    )
+                RoundedRectangleAsyncImageView(
+                    url: viewModel.image
+                )
                 Text(viewModel.name)
                     .font(.callout)
                     .frame(maxWidth: 128)
             }
         }
+    }
+}
+
+struct RoundedRectangleAsyncImageView: View {
+    let url: URL?
+    let tint: Color = .red
+    let size: CGSize = .init(width: 96, height: 144)
+    let cornerRadius: CGFloat = 8
+    var body: some View {
+        CachedAsyncImageView(
+            url: url
+        )
+        .tint(tint)
+        .frame(
+            width: size.width,
+            height: size.height
+        )
+        .clipShape(
+            RoundedRectangle(
+                cornerRadius: cornerRadius
+            )
+        )
     }
 }
 

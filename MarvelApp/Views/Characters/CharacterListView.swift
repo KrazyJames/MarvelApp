@@ -8,10 +8,15 @@
 import SwiftUI
 
 struct CharacterListView: View {
-    @ObservedObject var viewModel: CharacterListViewModel
+    @ObservedObject
+    var viewModel: CharacterListViewModel
+
     var body: some View {
         NavigationView {
-            ListView(viewModel: viewModel, type: .character) { character in
+            ListView(
+                viewModel: viewModel,
+                type: .character
+            ) { character in
                 CharacterDetailView(
                     viewModel: .init(
                         character,
@@ -28,7 +33,7 @@ struct CharacterListView: View {
 struct CharacterListView_Previews: PreviewProvider {
     static var previews: some View {
         CharacterListView(
-            viewModel: .init()
+            viewModel: .init(service: .init())
         )
     }
 }

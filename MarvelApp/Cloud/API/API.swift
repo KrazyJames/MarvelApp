@@ -7,12 +7,14 @@
 
 import Foundation
 
+typealias QueryItems = Dictionary<HTTPParameterField, String>
+
 struct API {
     static func load<T: Decodable>(
         router: URLRequestRouter,
         session: URLSession = .shared,
         decoder: JSONDecoder = JSONDecoder()
-    ) async -> Result<T, NetworkError> {
+    ) async throws -> T {
         decoder.dateDecodingStrategy = .iso8601
         do {
             let data = try await Self.makeRequest(
@@ -25,11 +27,11 @@ struct API {
             ) else {
                 throw NetworkError.decoding
             }
-            return .success(result)
+            return result
         } catch let error as NetworkError {
-            return .failure(error)
+            throw error
         } catch let error {
-            return .failure(.unknown(error))
+            throw NetworkError.unknown(error)
         }
     }
 

@@ -7,11 +7,15 @@
 
 import SwiftUI
 
-struct ListRowView<Content>: View where Content: ViewModel {
+struct ListRowView<Content>: View
+where Content: ViewModel {
     let viewModel: Content
+
     var body: some View {
         HStack {
-            CachedAsyncImageView(url: viewModel.image)
+            CachedAsyncImageView(
+                url: viewModel.image
+            )
             .tint(.red)
             .frame(
                 width: 64,

@@ -20,4 +20,10 @@ extension View {
             }
         }
     }
+
+    public func clearListRow() -> some View {
+        self
+            .listRowInsets(.init())
+            .listRowBackground(Color.clear)
+    }
 }

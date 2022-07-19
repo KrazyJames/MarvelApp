@@ -9,10 +9,14 @@ import Foundation
 
 @MainActor
 final class ComicDetailViewModel<Element>: ObservableObject where Element: ViewModel {
+    @Published
+    var characters: [CharacterViewModel] = []
+    @Published
+    var creators: [CreatorViewModel] = []
+
     let comic: Element
-    @Published var characters: [CharacterViewModel] = []
-    @Published var creators: [CreatorViewModel] = []
     let service: ComicService
+
     private var isLoading = false
     private var shouldLoad: Bool {
         !isLoading && (characters.isEmpty || creators.isEmpty)
@@ -34,16 +38,24 @@ final class ComicDetailViewModel<Element>: ObservableObject where Element: ViewM
     }
 
     private func loadCharacters() async {
-        let result = await service.getCharacters(for: comic.id)
-        if case let .success(creators) = result {
-            self.characters = creators.map(CharacterViewModel.init)
+        do {
+            let result = try await service.getCharacters(for: comic.id)
+            characters = result.map(CharacterViewModel.init)
+        } catch let error as NetworkError {
+            debugPrint(error.localizedDescription)
+        } catch {
+            debugPrint(error.localizedDescription)
         }
     }
 
     private func loadCreators() async {
-        let result = await service.getCreators(for: comic.id)
-        if case let .success(creators) = result {
-            self.creators = creators.map(CreatorViewModel.init)
+        do {
+            let result = try await service.getCreators(for: comic.id)
+            creators = result.map(CreatorViewModel.init)
+        } catch let error as NetworkError {
+            debugPrint(error.localizedDescription)
+        } catch {
+            debugPrint(error.localizedDescription)
         }
     }
 }

@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ComicDetailView: View {
-    @ObservedObject var viewModel: ComicDetailViewModel<ComicViewModel>
+    @ObservedObject
+    var viewModel: ComicDetailViewModel<ComicViewModel>
 
     var body: some View {
         List {
@@ -26,14 +27,12 @@ struct ComicDetailView: View {
             } footer: {
                 Text(viewModel.comic.date)
             }
-            .listRowInsets(.init())
-            .listRowBackground(Color.clear)
+            .clearListRow()
 
             Section("Description") {
                 Text(viewModel.comic.description)
             }
-            .listRowInsets(.init())
-            .listRowBackground(Color.clear)
+            .clearListRow()
 
             Section("Characters") {
                 ItemsCollectionView(
@@ -47,8 +46,7 @@ struct ComicDetailView: View {
                     )
                 }
             }
-            .listRowInsets(.init())
-            .listRowBackground(Color.clear)
+            .clearListRow()
 
             Section("Creators") {
                 ItemsCollectionView(
@@ -62,8 +60,7 @@ struct ComicDetailView: View {
                     )
                 }
             }
-            .listRowInsets(.init())
-            .listRowBackground(Color.clear)
+            .clearListRow()
         }
         .navigationTitle(viewModel.comic.name)
         .navigationBarTitleDisplayMode(.inline)

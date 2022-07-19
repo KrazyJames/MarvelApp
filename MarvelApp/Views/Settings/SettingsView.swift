@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @State private var isPresented = false
+    @State
+    private var isPresented = false
+
     var body: some View {
         NavigationView {
             List {
@@ -18,7 +20,7 @@ struct SettingsView: View {
                 .searchable(text: .constant(""))
             }
             .toolbar {
-                ToolbarItem.init(placement: .primaryAction) {
+                ToolbarItem(placement: .primaryAction) {
                     Button {
                         isPresented.toggle()
                     } label: {

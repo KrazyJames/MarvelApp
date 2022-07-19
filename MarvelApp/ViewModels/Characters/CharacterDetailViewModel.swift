@@ -10,9 +10,11 @@ import UIKit
 
 @MainActor
 final class CharacterDetailViewModel<Element>: ObservableObject where Element: ViewModel {
+    @Published
+    var comics: [ComicViewModel] = []
     let character: Element
-    @Published var comics: [ComicViewModel] = []
     let service: CharacterService
+
     private var isLoading = false
     private var shouldLoad: Bool {
         !isLoading && comics.isEmpty
@@ -33,10 +35,14 @@ final class CharacterDetailViewModel<Element>: ObservableObject where Element: V
     func load() async {
         if shouldLoad {
             isLoading.toggle()
-            let result = await service.getComics(for: character.id)
-            isLoading.toggle()
-            if case let .success(creators) = result {
-                self.comics = creators.map(ComicViewModel.init)
+            do {
+                let result = try await service.getComics(for: character.id)
+                isLoading.toggle()
+                comics = result.map(ComicViewModel.init)
+            } catch let error as NetworkError {
+                debugPrint(error.localizedDescription)
+            } catch {
+                debugPrint(error.localizedDescription)
             }
         }
     }

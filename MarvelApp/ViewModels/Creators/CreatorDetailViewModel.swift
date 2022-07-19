@@ -9,15 +9,20 @@ import Foundation
 
 @MainActor
 final class CreatorDetailViewModel<Element>: ObservableObject where Element: ViewModel {
+    @Published
+    var comics: [ComicViewModel] = []
     let creator: Element
-    @Published var comics: [ComicViewModel] = []
     let service: CreatorService
+
     private var isLoading = false
     private var shouldLoad: Bool {
         !isLoading && comics.isEmpty
     }
 
-    init(creator: Element, service: CreatorService) {
+    init(
+        creator: Element,
+        service: CreatorService
+    ) {
         self.creator = creator
         self.service = service
     }
@@ -26,10 +31,16 @@ final class CreatorDetailViewModel<Element>: ObservableObject where Element: Vie
     func load() async {
         if shouldLoad {
             isLoading.toggle()
-            let result = await service.getComics(for: creator.id)
-            isLoading.toggle()
-            if case let .success(comics) = result {
-                self.comics = comics.map(ComicViewModel.init)
+            do {
+                let result = try await service.getComics(
+                    for: creator.id
+                )
+                isLoading.toggle()
+                comics = result.map(ComicViewModel.init)
+            } catch let error as NetworkError {
+                debugPrint(error.localizedDescription)
+            } catch {
+                debugPrint(error.localizedDescription)
             }
         }
     }

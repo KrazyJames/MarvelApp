@@ -7,12 +7,18 @@
 
 import SwiftUI
 
-struct ItemsCollectionView<Content, Destination>: View where Content: ViewModel, Destination: View {
+struct ItemsCollectionView<Content, Destination>: View
+where Content: ViewModel, Destination: View {
     let items: [Content]
     let destination: (Content) -> Destination
+
     private let rows: [GridItem] = [.init()]
+
     var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
+        ScrollView(
+            .horizontal,
+            showsIndicators: false
+        ) {
             LazyHGrid(rows: rows) {
                 ForEach(items) { element in
                     NavigationImageView(

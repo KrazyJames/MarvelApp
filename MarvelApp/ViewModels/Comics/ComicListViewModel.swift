@@ -9,11 +9,14 @@ import Foundation
 
 @MainActor
 final class ComicListViewModel: ObservableObject, ListViewModel {
-    @Published var list: [ComicViewModel] = []
-    @Published var term = ""
-    @Published private var isLoading = false
+    @Published
+    var list: [ComicViewModel] = []
+    @Published
+    var term = ""
+    @Published
+    private var isLoading = false
 
-    let service = ComicService()
+    let service: ComicService
 
     var isLoadingMore: Bool {
         isLoading && !list.isEmpty
@@ -25,6 +28,10 @@ final class ComicListViewModel: ObservableObject, ListViewModel {
 
     var shouldShowLoading: Bool {
         list.isEmpty && isLoading
+    }
+
+    init(service: ComicService) {
+        self.service = service
     }
 
     @Sendable
@@ -41,10 +48,14 @@ final class ComicListViewModel: ObservableObject, ListViewModel {
     func search() async {
         if !isLoading {
             isLoading.toggle()
-            let result = await service.search(for: term)
-            isLoading.toggle()
-            if case let .success(comics) = result {
-                list = comics.map(ComicViewModel.init)
+            do {
+                let result = try await service.search(for: term)
+                isLoading.toggle()
+                list = result.map(ComicViewModel.init)
+            } catch let error as NetworkError {
+                debugPrint(error.localizedDescription)
+            } catch {
+                debugPrint(error.localizedDescription)
             }
         }
     }
@@ -62,15 +73,19 @@ final class ComicListViewModel: ObservableObject, ListViewModel {
     ) async {
         if !isLoading {
             isLoading.toggle()
-            let result = await service.getAll(queryItems: queryItems)
-            isLoading.toggle()
-            if case let .success(comics) = result {
-                let new = comics.map(ComicViewModel.init)
+            do {
+                let result = try await service.getAll(queryItems: queryItems)
+                isLoading.toggle()
+                let new = result.map(ComicViewModel.init)
                 if isRefresh {
                     list = new
                 } else {
                     list.append(contentsOf: new)
                 }
+            } catch let error as NetworkError {
+                debugPrint(error.localizedDescription)
+            } catch {
+                debugPrint(error.localizedDescription)
             }
         }
     }

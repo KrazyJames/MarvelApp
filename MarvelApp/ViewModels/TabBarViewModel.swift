@@ -9,11 +9,10 @@ import Foundation
 
 @MainActor
 final class TabBarViewModel: ObservableObject {
-    @Published var characterListViewModel = CharacterListViewModel()
-    @Published var comicListViewModel = ComicListViewModel()
-    @Published var selectedTab = TabBarView.Tab.comics
-
-    let characterService = CharacterService()
-    let comicService = ComicService()
-    let creatorService = CreatorService()
+    @Published
+    var characterListViewModel = CharacterListViewModel(service: .init())
+    @Published
+    var comicListViewModel = ComicListViewModel(service: .init())
+    @Published
+    var selectedTab = TabBarView.Tab.comics
 }

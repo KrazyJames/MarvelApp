@@ -14,7 +14,8 @@ struct TabBarView: View {
         case settings
     }
 
-    @StateObject private var viewModel = TabBarViewModel()
+    @StateObject
+    private var viewModel = TabBarViewModel()
 
     var body: some View {
         TabView(selection: $viewModel.selectedTab) {

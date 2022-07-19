@@ -8,22 +8,16 @@
 import SwiftUI
 
 struct CreatorDetailView: View {
-    @ObservedObject var viewModel: CreatorDetailViewModel<CreatorViewModel>
+    @ObservedObject
+    var viewModel: CreatorDetailViewModel<CreatorViewModel>
+
     var body: some View {
         List {
             Section {
                 HStack {
                     Spacer()
-                    CachedAsyncImageView(
+                    CircleAsyncImageView(
                         url: viewModel.creator.image
-                    )
-                    .scaledToFill()
-                    .frame(
-                        width: 256,
-                        height: 256
-                    )
-                    .clipShape(
-                        Circle()
                     )
                     Spacer()
                 }
@@ -34,8 +28,7 @@ struct CreatorDetailView: View {
                     Spacer()
                 }
             }
-            .listRowInsets(.init())
-            .listRowBackground(Color.clear)
+            .clearListRow()
 
             Section("Comics") {
                 ForEach(viewModel.comics) { comic in
@@ -46,6 +39,24 @@ struct CreatorDetailView: View {
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarTitle(viewModel.creator.name)
         .task(viewModel.load)
+    }
+}
+
+struct CircleAsyncImageView: View {
+    let url: URL?
+    let size: CGSize = .init(width: 256, height: 256)
+    var body: some View {
+        CachedAsyncImageView(
+            url: url
+        )
+        .scaledToFill()
+        .frame(
+            width: size.width,
+            height: size.height
+        )
+        .clipShape(
+            Circle()
+        )
     }
 }
 

@@ -7,8 +7,6 @@
 
 import Foundation
 
-typealias QueryItems = Dictionary<HTTPParameterField, String>
-
 enum CharacterRouter: URLRequestRouter {
     case getAll(queryItems: QueryItems)
     case getDetails(id: Int, queryItems: QueryItems)

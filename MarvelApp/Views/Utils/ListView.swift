@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct ListView<Content, Destination>: View where Content: ListViewModel, Destination: View {
+struct ListView<Content, Destination>: View
+where Content: ListViewModel, Destination: View {
 
     typealias Element = Content.Element
 
@@ -71,7 +72,7 @@ struct ListCellView<Content, Destination>: View where Content: ViewModel, Destin
 }
 
 struct ListView_Previews: PreviewProvider {
-    static var viewModel = CharacterListViewModel()
+    static var viewModel = CharacterListViewModel(service: .init())
     static var previews: some View {
         NavigationView {
             ListView(
