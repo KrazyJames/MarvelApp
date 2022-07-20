@@ -30,6 +30,7 @@ struct TabBarView: View {
             }
             .tag(Tab.characters)
 
+
             ComicListView(
                 viewModel: viewModel.comicListViewModel
             )
@@ -47,6 +48,15 @@ struct TabBarView: View {
             }
             .tag(Tab.settings)
         }
+        .environmentObject(
+            viewModel.comicListViewModel.service
+        )
+        .environmentObject(
+            viewModel.characterListViewModel.service
+        )
+        .environmentObject(
+            viewModel.creatorService
+        )
     }
 }
 

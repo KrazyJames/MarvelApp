@@ -10,6 +10,8 @@ import SwiftUI
 struct ComicDetailView: View {
     @ObservedObject
     var viewModel: ComicDetailViewModel<ComicViewModel>
+    @EnvironmentObject var characterService: CharacterService
+    @EnvironmentObject var creatorService: CreatorService
 
     var body: some View {
         List {
@@ -41,7 +43,7 @@ struct ComicDetailView: View {
                     CharacterDetailView(
                         viewModel: .init(
                             character,
-                            service: .init()
+                            service: characterService
                         )
                     )
                 }
@@ -55,7 +57,7 @@ struct ComicDetailView: View {
                     CreatorDetailView(
                         viewModel: .init(
                             creator: creator,
-                            service: .init()
+                            service: creatorService
                         )
                     )
                 }

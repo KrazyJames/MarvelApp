@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct ComicListView: View {
-    @ObservedObject var viewModel: ComicListViewModel
+    @ObservedObject
+    var viewModel: ComicListViewModel
+
     var body: some View {
         NavigationView {
             ListView(viewModel: viewModel, type: .comic) { comic in
