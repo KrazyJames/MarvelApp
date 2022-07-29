@@ -148,8 +148,7 @@
 			children = (
 				AA440911286D4AB700BB6418 /* Info.plist */,
 				AA4408DC286D160800BB6418 /* MarvelAppApp.swift */,
-				AA4408DE286D160800BB6418 /* ContentView.swift */,
-				AA4408F7286D1B5D00BB6418 /* Cloud */,
+				AA4408F7286D1B5D00BB6418 /* Network */,
 				AA4408EA286D165800BB6418 /* Models */,
 				AA44090C286D4A1500BB6418 /* Views */,
 				AA440909286D469A00BB6418 /* ViewModels */,
@@ -183,15 +182,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		AA4408F7286D1B5D00BB6418 /* Cloud */ = {
+		AA4408F7286D1B5D00BB6418 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				AA5A69BC28932A6000720232 /* Monitor */,
 				AA440907286D29BE00BB6418 /* API */,
 				AA440906286D29B500BB6418 /* Errors */,
 				AA440908286D29CA00BB6418 /* Features */,
+				AA5A69BC28932A6000720232 /* Monitor */,
 			);
-			path = Cloud;
+			path = Network;
 			sourceTree = "<group>";
 		};
 		AA440906286D29B500BB6418 /* Errors */ = {
@@ -237,6 +236,7 @@
 		AA44090C286D4A1500BB6418 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AA4408DE286D160800BB6418 /* ContentView.swift */,
 				AA9022B0286E959000B2AFA2 /* TabBarView.swift */,
 				AA440915286D525B00BB6418 /* Characters */,
 				AA9022B7286E980B00B2AFA2 /* Comics */,
