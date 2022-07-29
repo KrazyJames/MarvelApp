@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct MarvelAppApp: App {
+    @StateObject private var networkMonitor = NetworkMonitor()
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(networkMonitor)
                 .preferredColorScheme(.dark)
                 .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
         }

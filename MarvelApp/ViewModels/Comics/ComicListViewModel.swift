@@ -8,7 +8,7 @@
 import Foundation
 
 @MainActor
-final class ComicListViewModel: ObservableObject, ListViewModel {
+final class ComicListViewModel: ListViewModel {
     @Published
     var list: [ComicViewModel] = []
     @Published

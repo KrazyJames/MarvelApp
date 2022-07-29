@@ -8,7 +8,7 @@
 import Foundation
 
 @MainActor
-final class CharacterListViewModel: ObservableObject, ListViewModel {
+final class CharacterListViewModel: ListViewModel {
     @Published
     var list: [CharacterViewModel] = []
     @Published

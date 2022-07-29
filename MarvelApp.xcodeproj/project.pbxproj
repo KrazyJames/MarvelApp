@@ -37,6 +37,8 @@
 		AA59253D287CE3DE0097B004 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA59253C287CE3DE0097B004 /* ListViewModel.swift */; };
 		AA59253F287CEF8B0097B004 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA59253E287CEF8B0097B004 /* ListView.swift */; };
 		AA592542287CF9440097B004 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA592541287CF9440097B004 /* SettingsView.swift */; };
+		AA5A69BE28932A6C00720232 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5A69BD28932A6C00720232 /* NetworkMonitor.swift */; };
+		AA5A69C02893575900720232 /* NoNetworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5A69BF2893575900720232 /* NoNetworkView.swift */; };
 		AA9022AB286E7A5100B2AFA2 /* CharacterDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9022AA286E7A5100B2AFA2 /* CharacterDetailView.swift */; };
 		AA9022AF286E8A4A00B2AFA2 /* CachedAsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9022AE286E8A4A00B2AFA2 /* CachedAsyncImageView.swift */; };
 		AA9022B1286E959000B2AFA2 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9022B0286E959000B2AFA2 /* TabBarView.swift */; };
@@ -91,6 +93,8 @@
 		AA59253C287CE3DE0097B004 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		AA59253E287CEF8B0097B004 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		AA592541287CF9440097B004 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		AA5A69BD28932A6C00720232 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		AA5A69BF2893575900720232 /* NoNetworkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoNetworkView.swift; sourceTree = "<group>"; };
 		AA9022AA286E7A5100B2AFA2 /* CharacterDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailView.swift; sourceTree = "<group>"; };
 		AA9022AE286E8A4A00B2AFA2 /* CachedAsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedAsyncImageView.swift; sourceTree = "<group>"; };
 		AA9022B0286E959000B2AFA2 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
@@ -182,6 +186,7 @@
 		AA4408F7286D1B5D00BB6418 /* Cloud */ = {
 			isa = PBXGroup;
 			children = (
+				AA5A69BC28932A6000720232 /* Monitor */,
 				AA440907286D29BE00BB6418 /* API */,
 				AA440906286D29B500BB6418 /* Errors */,
 				AA440908286D29CA00BB6418 /* Features */,
@@ -271,6 +276,7 @@
 				AA59253E287CEF8B0097B004 /* ListView.swift */,
 				AA440916286D527500BB6418 /* ListRowView.swift */,
 				AAA8F7C928767D9700593F0C /* ListFooterView.swift */,
+				AA5A69BF2893575900720232 /* NoNetworkView.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -336,6 +342,14 @@
 				AA592541287CF9440097B004 /* SettingsView.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		AA5A69BC28932A6000720232 /* Monitor */ = {
+			isa = PBXGroup;
+			children = (
+				AA5A69BD28932A6C00720232 /* NetworkMonitor.swift */,
+			);
+			path = Monitor;
 			sourceTree = "<group>";
 		};
 		AA9022B2286E96A400B2AFA2 /* Comics */ = {
@@ -462,10 +476,12 @@
 				AA440905286D298900BB6418 /* NetworkError.swift in Sources */,
 				AAA8F7C428766AA000593F0C /* CharacterViewModel.swift in Sources */,
 				AAF13B1928727D9600C773E7 /* CreatorDetailViewModel.swift in Sources */,
+				AA5A69BE28932A6C00720232 /* NetworkMonitor.swift in Sources */,
 				AA4419BF2870006D00A823C4 /* CreatorRouter.swift in Sources */,
 				AA440903286D292F00BB6418 /* CharacterService.swift in Sources */,
 				AA4408DD286D160800BB6418 /* MarvelAppApp.swift in Sources */,
 				AA4419C82870062200A823C4 /* CreatorViewModel.swift in Sources */,
+				AA5A69C02893575900720232 /* NoNetworkView.swift in Sources */,
 				AAF13B1528725A7600C773E7 /* CharacterDetailViewModel.swift in Sources */,
 				AA440910286D4A2B00BB6418 /* CharacterListView.swift in Sources */,
 				AA44090B286D46A500BB6418 /* CharacterListViewModel.swift in Sources */,
