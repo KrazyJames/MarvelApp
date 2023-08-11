@@ -14,6 +14,8 @@ final class ComicListViewModel: ListViewModel {
     @Published
     var term = ""
     @Published
+    var isSearching: Bool = false
+    @Published
     private var isLoading = false
     @Published
     var isAlertPresented: Bool = false
@@ -67,7 +69,14 @@ final class ComicListViewModel: ListViewModel {
     func loadMore(_ comic: ComicViewModel) async {
         if comic == list.last {
             let offset = list.count
-            await load(queryItems: [.limit: String(20), .offset: String(offset)])
+            var queryItems: QueryItems = [.limit: String(20), .offset: String(offset)]
+            if isSearching {
+                queryItems.merge(
+                    [.titleStartsWith: term],
+                    uniquingKeysWith: { $1 }
+                )
+            }
+            await load(queryItems: queryItems)
         }
     }
 

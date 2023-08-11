@@ -14,6 +14,8 @@ final class CharacterListViewModel: ListViewModel {
     @Published
     var term = ""
     @Published
+    var isSearching: Bool = false
+    @Published
     private var isLoading = false
     @Published
     var isAlertPresented: Bool = false

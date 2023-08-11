@@ -18,6 +18,7 @@ where Content: ListViewModel, Destination: View {
     }
 
     @ObservedObject var viewModel: Content
+    @Environment(\.isSearching) var isSeaching: Bool
     let type: ListType
     let destination: (Element) -> Destination
 
@@ -53,6 +54,9 @@ where Content: ListViewModel, Destination: View {
                 placement: .toolbar,
                 prompt: "Look for a \(type.rawValue)..."
             )
+            .onChange(of: isSeaching, perform: { newValue in
+                viewModel.isSearching = newValue
+            })
             .onSubmit(of: .search, viewModel.search)
             .refreshable(action: viewModel.refresh)
             .alert(

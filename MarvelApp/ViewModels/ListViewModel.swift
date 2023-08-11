@@ -12,6 +12,7 @@ protocol ListViewModel: ObservableObject {
     associatedtype Element: ViewModel & Identifiable
     var list: [Element] { get set }
     var term: String { get set }
+    var isSearching: Bool { get set }
     var isAlertPresented: Bool { get set }
     var error: NetworkError? { get set }
     var isLoadingMore: Bool { get }
