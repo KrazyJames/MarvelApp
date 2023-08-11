@@ -149,12 +149,12 @@
 			isa = PBXGroup;
 			children = (
 				AA440911286D4AB700BB6418 /* Info.plist */,
+				AAA8F7C528766DE900593F0C /* Launch.storyboard */,
 				AA4408DC286D160800BB6418 /* MarvelAppApp.swift */,
 				AA4408F7286D1B5D00BB6418 /* Network */,
 				AA4408EA286D165800BB6418 /* Models */,
 				AA44090C286D4A1500BB6418 /* Views */,
 				AA440909286D469A00BB6418 /* ViewModels */,
-				AAA8F7C528766DE900593F0C /* Launch.storyboard */,
 				AA4408E0286D160B00BB6418 /* Assets.xcassets */,
 				AA4408E2286D160B00BB6418 /* Preview Content */,
 			);
