@@ -15,6 +15,10 @@ final class ComicListViewModel: ListViewModel {
     var term = ""
     @Published
     private var isLoading = false
+    @Published
+    var isAlertPresented: Bool = false
+    @Published
+    var error: NetworkError?
 
     let service: ComicService
 
@@ -82,11 +86,17 @@ final class ComicListViewModel: ListViewModel {
                     list.append(contentsOf: new)
                 }
             } catch let error as NetworkError {
+                present(error: error)
                 debugPrint(error.localizedDescription)
             } catch {
                 debugPrint(error.localizedDescription)
             }
             isLoading.toggle()
         }
+    }
+
+    func present(error: NetworkError) {
+        self.error = error
+        self.isAlertPresented = true
     }
 }

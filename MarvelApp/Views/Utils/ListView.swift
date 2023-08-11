@@ -55,6 +55,23 @@ where Content: ListViewModel, Destination: View {
             )
             .onSubmit(of: .search, viewModel.search)
             .refreshable(action: viewModel.refresh)
+            .alert(
+                "Error",
+                isPresented: $viewModel.isAlertPresented,
+                presenting: viewModel.error,
+                actions: { error in
+                    Button("Retry") {
+                        Task {
+                            await viewModel.onAppear()
+                        }
+                    }
+                    Button("Ok") {
+                        viewModel.isAlertPresented = false
+                    }
+                }, message: { error in
+                    Text(error.localizedDescription)
+                }
+            )
         }
     }
 }
