@@ -14,7 +14,7 @@ struct Event: Decodable, Identifiable {
     let modified: Date
     let start: Date
     let end: Date
-    let thumbnail: Image
+    let thumbnail: Thumbnail
     let comics: ComicList
     let stories: StoryList
     let series: SeriesList

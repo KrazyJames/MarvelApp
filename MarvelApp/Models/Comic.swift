@@ -17,8 +17,8 @@ struct Comic: Decodable, Identifiable {
     let format: String
     let pageCount: Int
     let series: SeriesSummary
-    let thumbnail: Image
-    let images: [Image]
+    let thumbnail: Thumbnail
+    let images: [Thumbnail]
     let creators: CreatorList
     let characters: CharacterList
     let stories: StoryList

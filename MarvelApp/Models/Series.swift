@@ -15,7 +15,7 @@ struct Series: Decodable, Identifiable {
     let endYear: Int
     let rating: Int
     let modified: Date
-    let thumbnail: Image
+    let thumbnail: Thumbnail
     let comics: ComicList
     let stories: StoryList
     let events: EventList

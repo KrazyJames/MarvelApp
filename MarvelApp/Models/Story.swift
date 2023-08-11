@@ -13,7 +13,7 @@ struct Story: Decodable, Identifiable {
     let description: String
     let type: String
     let modified: Date
-    let thumbnail: Image
+    let thumbnail: Thumbnail
     let comics: ComicList
     let series: SeriesList
     let events: EventList

@@ -12,7 +12,7 @@ struct Character: Decodable, Identifiable {
     let name: String
     let description: String
     let modified: Date
-    let thumbnail: Image
+    let thumbnail: Thumbnail
     let comics: ComicList
     let stories: StoryList
     let events: EventList

@@ -12,7 +12,7 @@ struct Creator: Decodable, Identifiable {
     let suffix: String
     let fullName: String
     let modified: Date
-    let thumbnail: Image
+    let thumbnail: Thumbnail
     let series: SeriesList
     let stories: StoryList
     let comics: ComicList
