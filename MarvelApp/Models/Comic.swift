@@ -11,9 +11,10 @@ struct Comic: Decodable, Identifiable {
     let id: Int
     let title: String
     let issueNumber: Int
-    let description: String?
+    let description: String
     let modified: Date
     let isbn: String
+    let upc: String
     let format: String
     let pageCount: Int
     let series: SeriesSummary
@@ -33,6 +34,7 @@ extension Comic {
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vitae urna nec arcu aliquam commodo. Proin pharetra maximus felis non vestibulum.",
         modified: .now,
         isbn: "fake-isbn",
+        upc: "fake-upc",
         format: "",
         pageCount: .zero,
         series: .demo,
@@ -51,6 +53,7 @@ extension Comic {
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vitae urna nec arcu aliquam commodo. Proin pharetra maximus felis non vestibulum.",
         modified: .now,
         isbn: "fake-isbn",
+        upc: "fake-upc",
         format: "",
         pageCount: .zero,
         series: .demo,
@@ -61,17 +64,6 @@ extension Comic {
         stories: .demo,
         events: .demo
     )
-}
-
-enum ComicFormat: String, Decodable {
-    case comic = "Comic"
-    case megazine = "Megazine"
-    case tradePaperback = "Trade Paperback"
-    case hardcover = "Hardcover"
-    case digest = "Digest"
-    case graphicNovel = "Graphic Novel"
-    case digitalComic = "Digital Comic"
-    case infiniteComic = "Infinite Comic"
 }
 
 struct ComicDataWrapper: Decodable, DataWrapper {

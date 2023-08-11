@@ -23,11 +23,7 @@ struct ComicViewModel: Identifiable, ViewModel {
     }
 
     var description: String {
-        guard let description = comic.description,
-           !description.isEmpty else {
-            return "No description provided"
-        }
-        return description
+        comic.description
     }
 
     var image: URL? {
