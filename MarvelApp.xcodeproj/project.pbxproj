@@ -58,6 +58,7 @@
 		AAF13B1528725A7600C773E7 /* CharacterDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF13B1428725A7600C773E7 /* CharacterDetailViewModel.swift */; };
 		AAF13B172872736E00C773E7 /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF13B162872736E00C773E7 /* TabBarViewModel.swift */; };
 		AAF13B1928727D9600C773E7 /* CreatorDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF13B1828727D9600C773E7 /* CreatorDetailViewModel.swift */; };
+		AAF797F42A85C5A400673B30 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF797F32A85C5A400673B30 /* WebService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -114,6 +115,7 @@
 		AAF13B1428725A7600C773E7 /* CharacterDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailViewModel.swift; sourceTree = "<group>"; };
 		AAF13B162872736E00C773E7 /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
 		AAF13B1828727D9600C773E7 /* CreatorDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatorDetailViewModel.swift; sourceTree = "<group>"; };
+		AAF797F32A85C5A400673B30 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +208,7 @@
 			children = (
 				AA4408FA286D1C9600BB6418 /* API.swift */,
 				AA4408F8286D1B6C00BB6418 /* CloudConstants.swift */,
+				AAF797F32A85C5A400673B30 /* WebService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -472,6 +475,7 @@
 				AA4419C12870011F00A823C4 /* CreatorService.swift in Sources */,
 				AA9022AF286E8A4A00B2AFA2 /* CachedAsyncImageView.swift in Sources */,
 				AA4419CB2870144600A823C4 /* CreatorDetailView.swift in Sources */,
+				AAF797F42A85C5A400673B30 /* WebService.swift in Sources */,
 				AA9022BB286E9B9E00B2AFA2 /* ComicListView.swift in Sources */,
 				AA440905286D298900BB6418 /* NetworkError.swift in Sources */,
 				AAA8F7C428766AA000593F0C /* CharacterViewModel.swift in Sources */,

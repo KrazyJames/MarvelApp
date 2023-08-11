@@ -7,14 +7,24 @@
 
 import Foundation
 
-final class ComicService: ObservableObject {
-    func getAll(queryItems: QueryItems = .init()) async throws -> [Comic] {
+final class ComicService: WebService,  ObservableObject {
+    func getAll(queryItems: QueryItems = .init()) async throws -> ComicDataContainer {
         let router = ComicRouter.getAll(queryItems: queryItems)
-        return try await Self.fetch(router: router).data.results
+        return try await Self.fetch(router: router).data
     }
 
-    func search(for term: String) async throws -> [Comic] {
-        try await getAll(queryItems: [.titleStartsWith: term])
+    func search(for term: String, queryItems: QueryItems = .init()) async throws -> ComicDataContainer {
+        try await getAll(
+            queryItems: queryItems.merging(
+                [.titleStartsWith: term],
+                uniquingKeysWith: { $1 }
+            )
+        )
+    }
+
+    func getDetails(for id: Int, queryItems: QueryItems = .init()) async throws -> ComicDataContainer {
+        let router = ComicRouter.getDetails(id: id, queryItems: queryItems)
+        return try await Self.fetch(router: router).data
     }
 
     func getCharacters(for comicId: Int, queryItems: QueryItems = .init()) async throws -> [Character] {

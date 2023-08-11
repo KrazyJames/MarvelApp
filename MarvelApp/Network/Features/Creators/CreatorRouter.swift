@@ -30,7 +30,7 @@ enum CreatorRouter: URLRequestRouter {
             return "\(CloudConstants.basePath)/creators"
         case let .getDetails(id, _):
             return "\(CloudConstants.basePath)/creators/\(id)"
-        case let .getComics(id, queryItems: _):
+        case let .getComics(id, _):
             return "\(CloudConstants.basePath)/creators/\(id)/comics"
         }
     }

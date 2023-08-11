@@ -50,13 +50,13 @@ final class ComicListViewModel: ListViewModel {
             isLoading.toggle()
             do {
                 let result = try await service.search(for: term)
-                isLoading.toggle()
-                list = result.map(ComicViewModel.init)
+                list = result.results.map(ComicViewModel.init)
             } catch let error as NetworkError {
                 debugPrint(error.localizedDescription)
             } catch {
                 debugPrint(error.localizedDescription)
             }
+            isLoading.toggle()
         }
     }
 
@@ -75,8 +75,7 @@ final class ComicListViewModel: ListViewModel {
             isLoading.toggle()
             do {
                 let result = try await service.getAll(queryItems: queryItems)
-                isLoading.toggle()
-                let new = result.map(ComicViewModel.init)
+                let new = result.results.map(ComicViewModel.init)
                 if isRefresh {
                     list = new
                 } else {
@@ -87,6 +86,7 @@ final class ComicListViewModel: ListViewModel {
             } catch {
                 debugPrint(error.localizedDescription)
             }
+            isLoading.toggle()
         }
     }
 }

@@ -48,7 +48,7 @@ final class CharacterListViewModel: ListViewModel {
             isLoading.toggle()
             do {
                 let result = try await service.search(for: term)
-                list = result.map(CharacterViewModel.init)
+                list = result.results.map(CharacterViewModel.init)
                 isLoading.toggle()
             } catch let error as NetworkError {
                 debugPrint(error.localizedDescription)
@@ -73,8 +73,7 @@ final class CharacterListViewModel: ListViewModel {
             isLoading.toggle()
             do {
                 let result = try await service.getAll(queryItems: queryItems)
-                isLoading.toggle()
-                let new = result.map(CharacterViewModel.init)
+                let new = result.results.map(CharacterViewModel.init)
                 if isRefresh {
                     list = new
                 } else {
@@ -85,6 +84,7 @@ final class CharacterListViewModel: ListViewModel {
             } catch {
                 debugPrint(error.localizedDescription)
             }
+            isLoading.toggle()
         }
     }
 }
