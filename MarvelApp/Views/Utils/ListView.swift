@@ -54,9 +54,9 @@ where Content: ListViewModel, Destination: View {
                 placement: .toolbar,
                 prompt: "Look for a \(type.rawValue)..."
             )
-            .onChange(of: isSeaching, perform: { newValue in
-                viewModel.isSearching = newValue
-            })
+            .onChange(of: isSeaching) {
+                viewModel.isSearching = isSeaching
+            }
             .onSubmit(of: .search, viewModel.search)
             .refreshable(action: viewModel.refresh)
             .alert(
