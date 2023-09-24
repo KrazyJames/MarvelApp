@@ -53,6 +53,8 @@
 		AAA8F7C428766AA000593F0C /* CharacterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA8F7C328766AA000593F0C /* CharacterViewModel.swift */; };
 		AAA8F7C628766DE900593F0C /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAA8F7C528766DE900593F0C /* Launch.storyboard */; };
 		AAA8F7CA28767D9800593F0C /* ListFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA8F7C928767D9700593F0C /* ListFooterView.swift */; };
+		AAD3474B2AC0B97C0050C768 /* HTTPTypes in Frameworks */ = {isa = PBXBuildFile; productRef = AAD3474A2AC0B97C0050C768 /* HTTPTypes */; };
+		AAD3474D2AC0B97C0050C768 /* HTTPTypesFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = AAD3474C2AC0B97C0050C768 /* HTTPTypesFoundation */; };
 		AAF13B112872578C00C773E7 /* ItemsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF13B102872578C00C773E7 /* ItemsCollectionView.swift */; };
 		AAF13B132872597600C773E7 /* NavigationImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF13B122872597600C773E7 /* NavigationImageView.swift */; };
 		AAF13B1528725A7600C773E7 /* CharacterDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF13B1428725A7600C773E7 /* CharacterDetailViewModel.swift */; };
@@ -123,6 +125,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAD3474B2AC0B97C0050C768 /* HTTPTypes in Frameworks */,
+				AAD3474D2AC0B97C0050C768 /* HTTPTypesFoundation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,6 +401,10 @@
 			dependencies = (
 			);
 			name = MarvelApp;
+			packageProductDependencies = (
+				AAD3474A2AC0B97C0050C768 /* HTTPTypes */,
+				AAD3474C2AC0B97C0050C768 /* HTTPTypesFoundation */,
+			);
 			productName = MarvelApp;
 			productReference = AA4408D9286D160800BB6418 /* MarvelApp.app */;
 			productType = "com.apple.product-type.application";
@@ -425,6 +433,9 @@
 				Base,
 			);
 			mainGroup = AA4408D0286D160800BB6418;
+			packageReferences = (
+				AAD347492AC0B97C0050C768 /* XCRemoteSwiftPackageReference "swift-http-types" */,
+			);
 			productRefGroup = AA4408DA286D160800BB6418 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -727,6 +738,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AAD347492AC0B97C0050C768 /* XCRemoteSwiftPackageReference "swift-http-types" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-http-types.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AAD3474A2AC0B97C0050C768 /* HTTPTypes */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AAD347492AC0B97C0050C768 /* XCRemoteSwiftPackageReference "swift-http-types" */;
+			productName = HTTPTypes;
+		};
+		AAD3474C2AC0B97C0050C768 /* HTTPTypesFoundation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AAD347492AC0B97C0050C768 /* XCRemoteSwiftPackageReference "swift-http-types" */;
+			productName = HTTPTypesFoundation;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = AA4408D1286D160800BB6418 /* Project object */;
 }
