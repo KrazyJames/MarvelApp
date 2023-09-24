@@ -16,19 +16,15 @@ struct ContentView: View {
             TabBarView()
         } else {
             NoNetworkView()
-                .ignoresSafeArea()
         }
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-            .preferredColorScheme(.dark)
-            .environmentObject(
-                NetworkMonitor(
-                    isConnected: true
-                )
+#Preview {
+    ContentView()
+        .environmentObject(
+            NetworkMonitor(
+                isConnected: false
             )
-    }
+        )
 }
