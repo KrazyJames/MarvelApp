@@ -8,17 +8,13 @@
 import SwiftUI
 
 struct TabBarView: View {
-    enum Tab: Hashable {
-        case characters
-        case comics
-        case settings
-    }
-
     @StateObject
     private var viewModel = TabBarViewModel()
 
     var body: some View {
-        TabView(selection: $viewModel.selectedTab) {
+        TabView(
+            selection: $viewModel.selectedTab
+        ) {
             CharacterListView(
                 viewModel: viewModel.characterListViewModel
             )

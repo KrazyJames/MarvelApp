@@ -14,7 +14,13 @@ final class TabBarViewModel: ObservableObject {
     @Published
     var comicListViewModel = ComicListViewModel(service: .init())
     @Published
-    var selectedTab = TabBarView.Tab.comics
+    var selectedTab = Tab.characters
     @Published
     var creatorService = CreatorService()
+}
+
+enum Tab: Hashable {
+    case characters
+    case comics
+    case settings
 }
